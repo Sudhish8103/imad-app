@@ -1,10 +1,23 @@
 // Counter Code
-var counter = 0;
+
 var button = document.getElementById("counter");
 button.onclick = function() {
-    
-  // Render the variable in the correct span
-  counter = counter + 1
-  var span = document.getElementById("count");
+    // Create a request object
+    var request = new XMlHttpRequest();
+    //Capture the response and store it in a variable
+    request.onreadystaechange = function(){
+        if(request.readyState === XMLHttpRequest.Done ) {
+            // Take some Action
+            if (request.status === 200) {
+              varcounter =   request.responseText;
+               var span = document.getElementById("count");
   span.innerHTML = counter.toString();
+            }
+            
+        }
+        //Not done yet
+    };
+  // Make the request
+  request.open('GET', 'http://whyblue123.imad.hasura-app.io/counter', true)
+  request.send(null); 
 };
