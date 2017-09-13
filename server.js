@@ -1,7 +1,7 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-const Pool = require('pg').Pool;
+var Pool = require('pg').Pool;
 var crypto = require('crypto');
 var bodyParser = require('body-parser');
 var config = {
@@ -19,7 +19,7 @@ app.use(morgan('combined'));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-const pool = new Pool();
+var pool = new Pool();
 app.get('/test-db', function (req, res){
    // make a select request
    // return a response with the results
